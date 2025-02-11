@@ -14,7 +14,11 @@
       NSURL *url = [[navigationAction request] URL];
       UIApplication *application = [UIApplication sharedApplication];
       if ([application canOpenURL:url]) {
-        [application openURL:url];
+        if (@available(iOS 10.0, *)) {
+          [application openURL:url options:@{} completionHandler:nil];
+        } else {
+          [application openURL:url];
+        }
       }
     }
     return nil;
