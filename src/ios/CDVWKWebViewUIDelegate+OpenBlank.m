@@ -12,6 +12,10 @@
 - (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
     if (!navigationAction.targetFrame.isMainFrame) {
       NSURL *url = [[navigationAction request] URL];
+
+      // Debugausgabe der URL in der Konsole
+      NSLog(@"Öffne URL im externen Browser: %@", url.absoluteString);
+
       UIApplication *application = [UIApplication sharedApplication];
       if ([application canOpenURL:url]) {
         if (@available(iOS 10.0, *)) {
@@ -19,8 +23,11 @@
         } else {
           [application openURL:url];
         }
+        // Abbrechen der Navigation im WebView
+        return nil;
       }
     }
     return nil;
 }
 @end
+
