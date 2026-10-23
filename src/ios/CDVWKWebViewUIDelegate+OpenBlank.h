@@ -1,13 +1,9 @@
-//
-//  CDVWKWebViewUIDelegate+OpenBlank.h
-//  Nyheder
-//
-//  Created by Alejandro Paredes Alva on 09/03/16.
-//
-//
-
 #import "CDVWKWebViewUIDelegate.h"
+#import <Cordova/CDVPlugin.h>
 
 @interface CDVWKWebViewUIDelegate (OpenBlank)
+@end
 
+// Hält den Navigation-Proxy während der Plugin-Laufzeit.
+@interface TMOpenBlankNavigationGuard : CDVPlugin
 @end
